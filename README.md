@@ -20,7 +20,7 @@ In order to reproduce our experiments, follow these steps:
 Train an Attach-Juxtapose parser with GPT-2 as the base with [IncPar](https://github.com/anaezquerro/incpar). Finetune GPT-2 as part of the training process. This can be done with the code provided as part of this repository using the following command:
 
 ```
-python3 -u -m supar.cmds.const.aj --device 0 train -b -c configs/config-mgpt.ini     -p ../results/models-con/ptb/model/parser.pt     --delay=0 --use_vq     --train ../treebanks/ptb-gold/train.trees     --dev ../treebanks/ptb-gold/dev.trees     --test ../treebanks/ptb-gold/test.trees
+python -u -m supar.cmds.const.aj --device 0 train -b -c configs/config-mgpt.ini     -p ../results/models-con/ptb/model/parser.pt     --delay=0 --use_vq     --train ../treebanks/ptb-gold/train.trees     --dev ../treebanks/ptb-gold/dev.trees     --test ../treebanks/ptb-gold/test.trees
 ```
 
 ### 2. Predict eye-tracking metrics
