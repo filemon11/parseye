@@ -34,5 +34,5 @@ where
 - MODEL is either 'vanilla' (non-finetuned GPT-2), 'aj' (finetuned as part of the Attach-Juxtapose parser) or 'both' (concatenation of both representations)
 - METRIC is one of these metrics 'FixProp', 'TRT', 'GPT', 'nFix', 'FFD'
 - FROM_TOKEN is either 'current', 'previous' or 'both' (from which token's representation to predict the current token's eye tracking measures)
-- MODEL_PATH: path to the fine-tuned Attach-Juxtapose parser model
+- MODEL_PATH: path to the fine-tuned Attach-Juxtapose parser model; here '../results/models-con/ptb/model/'
 - NEW_MODEL_NAME: name to use for saving the final model and results
