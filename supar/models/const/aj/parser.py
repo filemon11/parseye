@@ -93,7 +93,7 @@ class AttachJuxtaposeConstituencyParser(Parser):
         words, *feats, _, nodes, parents, news = batch
         mask = batch.mask[:, (2+self.args.delay):]
         x, qloss = self.model(words, feats)
-        loss = self.model.loss(x[:, 0:-2], nodes, parents, news, mask) + qloss
+        loss = self.model.loss(x[:, 1:-1], nodes, parents, news, mask) + qloss
         return loss
 
     @torch.no_grad()
@@ -101,8 +101,8 @@ class AttachJuxtaposeConstituencyParser(Parser):
         words, *feats, trees, nodes, parents, news = batch
         mask = batch.mask[:, (2+self.args.delay):]
         x, qloss = self.model(words, feats)
-        loss = self.model.loss(x[:, 0:-2], nodes, parents, news, mask) + qloss
-        chart_preds = self.model.decode(x[:, 0:-2], mask, self.args.beam_size)
+        loss = self.model.loss(x[:, 1:-1], nodes, parents, news, mask) + qloss
+        chart_preds = self.model.decode(x[:, 1:-1], mask, self.args.beam_size)
         preds = [AttachJuxtaposeTree.build(tree, [(i, j, self.NEW.vocab[label]) for i, j, label in chart], {UNK, NUL})
                  for tree, chart in zip(trees, chart_preds)]
         return SpanMetric(loss,
@@ -114,7 +114,7 @@ class AttachJuxtaposeConstituencyParser(Parser):
         words, *feats, trees = batch
         mask = batch.mask[:, (2+self.args.delay):]
         x, _ = self.model(words, feats)
-        chart_preds = self.model.decode(x[:, 0:-2], mask, self.args.beam_size)  # CHANGED
+        chart_preds = self.model.decode(x[:, 1:-1], mask, self.args.beam_size)  # CHANGED
         batch.trees = [AttachJuxtaposeTree.build(tree, [(i, j, self.NEW.vocab[label]) for i, j, label in chart], {UNK, NUL})
                        for tree, chart in zip(trees, chart_preds)]
         if self.args.prob:
