@@ -81,6 +81,8 @@ class EyeTracking(Transform):
                 index += 1
         
         elif data.endswith('.csv'):
+            index = None
+
             data = csv.reader(open(data, "r"))
 
             sentence = []
@@ -103,6 +105,10 @@ class EyeTracking(Transform):
 
                 if word.endswith("<EOS>"):
                     word = word[:-5]
+
+
+                if index is None:
+                    index = sentence_id
 
                 if sentence_id  > index:
                     yield EyeTrackingSentence(self, sentence, index,
