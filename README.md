@@ -1,6 +1,6 @@
 # Does syntactic parsing improve eye tracking prediction?
 
-In this preliminary word we investigate whether training an LLM on a parsing objective improves the predictiveness of its output embeddings with respect to eye-tracking metrics.
+In this preliminary work we investigate whether training an LLM on a parsing objective improves the predictiveness of its output embeddings with respect to eye-tracking metrics.
 
 The code is mostly based on [IncPar](https://github.com/anaezquerro/incpar).
 
